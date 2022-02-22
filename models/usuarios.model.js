@@ -6,14 +6,14 @@ const usuarios = function(usuario){
     this.status = usuario.status,
     this.role = usuario.role,
     this.mail = usuario.mail,
-    this.firtName = usuario.firtName,
+    this.firstName = usuario.firstName,
     this.lastName = usuario.lastName,
     this.company = usuario.company,
     this.password = usuario.password
 
 };
-
 //crear usuario.
+
 usuarios.create = (nuevoUsuario,resultado) =>{
 
     sql.query("INSERT INTO usuarios SET ?",nuevoUsuario,(err,res)=>{
@@ -27,6 +27,8 @@ usuarios.create = (nuevoUsuario,resultado) =>{
         resultado(null,{id:res.insertID,...nuevoUsuario});
     });
 };
+
+//buscar un usuario usando como campo el mail.
 
 usuarios.findByMail = (mail,resultado) =>{
 
@@ -46,4 +48,77 @@ usuarios.findByMail = (mail,resultado) =>{
 
         resultado({kind:"not_found"},null);
     })
+}
+
+//obtener todos los usuarios.
+
+usuarios.getAll = (result) =>{
+
+    let query = 'SELECT * FROM usuarios';
+
+    sql.query(query,(err,res)=>{
+        if(err){
+            console.log("error",err);
+            result(null,err);
+            return;
+        }
+
+        console.log("usuarios:" ,res);
+        result(null,res);
+
+    })
+}
+ 
+//aptualizar un usuario.
+
+usuarios.updateById = (id,usuario,result) =>  {
+
+    sql.query(
+
+        "UPDATE usuarios SET Status = ?,Role = ?,mail = ?,FirstName = ?, LastName = ?,Company = ?,Password = ? WHERE Id = ?",
+        [usuario.status,usuario.role,usuario.mail,usuario.firstName,usuarios.lastName,usuarios.company,usuarios.password],
+        (err,res) =>{
+            
+            if(err){    
+    
+                console.log("error:",err);
+                result(null,err);
+                return;
+            }
+            
+            if(res.affectedRows == 0){
+                result({kind:'No_Encontrado'},null);
+                return;
+            }
+
+            console.log("aptualizado usuario:",{id:id,...usuario});
+            result(null,{id:id,...usuario});
+        
+        }
+
+    )
+};
+
+
+//Borrar un usuario.
+
+usuarios.remove = (id,result) =>{
+
+    sql.query("DELETE FROM usuarios  WHERE id = ?",id,(err,res) =>{
+
+        if(err){
+            console.log("error:",err);
+            result(null,err);
+            return; 
+        }
+
+        if(res.affectedRows == 0){
+            result({kind:'No_Encontrado'},null);
+            return;
+        }
+
+        console.log("Usuario eliminado con la id:" ,id);
+        result(null,res);
+    });
+
 }
