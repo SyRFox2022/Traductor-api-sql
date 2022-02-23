@@ -2,7 +2,7 @@ module.exports = {
     
     HOST:'localhost',
     USER:'root',
-    PASSWORD:'syrfox2022',
+    PASSWORD:'syrfox',
     DB:'traductor',
     
 }

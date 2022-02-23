@@ -2,6 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
+//import routers 
+
+var usersRouter = require('./routes/usuarios.routes');
+
 var corsOptions = {
   origin: "http://localhost:4000"
 };
@@ -14,7 +18,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Traductor API SQL" });
 });
 
-require("./app/routes/tutorial.routes.js")(app);
+//routes
+app.use('/usuarios',usersRouter);
 
 
 const PORT = process.env.PORT || 4000;
