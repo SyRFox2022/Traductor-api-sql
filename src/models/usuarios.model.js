@@ -1,4 +1,4 @@
-const sql = require('./db.js');
+const sql = require('./../schemas/db.js');
 
 usuarios = require('./../schemas/usuarios.schemas.js');
 //crear usuario.
@@ -65,7 +65,7 @@ usuarios.updateById = (id,usuario,result) =>  {
     sql.query(
 
         "UPDATE usuarios SET Status = ?,Role = ?,mail = ?,FirstName = ?, LastName = ?,Company = ?,Password = ? WHERE Id = ?",
-        [usuario.status,usuario.role,usuario.mail,usuario.firstName,usuarios.lastName,usuarios.company,usuarios.password],
+        [usuarios.status,usuarios.role,usuarios.mail,usuarios.firstName,usuarios.lastName,usuarios.company,usuarios.password],
         (err,res) =>{
             
             if(err){    

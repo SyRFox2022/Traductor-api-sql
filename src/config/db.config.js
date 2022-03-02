@@ -1,8 +1,9 @@
+
 module.exports = {
     
-    HOST:'localhost',
-    USER:'root',
-    PASSWORD:'syrfox',
-    DB:'traductor',
+    HOST:process.env.HOST_DB,
+    USER:process.env.USER_DB,
+    PASSWORD:process.env.PASSWORD_DB,
+    DB:process.env.DB
     
 }

@@ -5,7 +5,7 @@
   "main": "./src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js", 
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
   "repository": {
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/SyRFox2022/Traductor-api-sql#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.15"
