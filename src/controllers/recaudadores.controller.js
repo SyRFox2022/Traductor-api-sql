@@ -2,11 +2,9 @@ const recaudadores = require('./../models/recaudadores.model');
 
 //Crear un nuevo recaudador.
 
-console.log(recaudadores)
-
 exports.create = (req,res) =>{
 
-    if(!res.body){
+    if(!req.body){
         res.status(400).send(
         {
             message:'El contenido no puede estar vacio,por favor rellene los campos.',
@@ -17,7 +15,7 @@ exports.create = (req,res) =>{
 
     //creando un objeto para guardar los datos recibidos del front end.
     
-    const recaudador = new recaudadores({
+    const recaudador = {
 
         codRecaudadores: req.body.codRecaudadores,
         nombre: req.body.nombre,
@@ -26,7 +24,7 @@ exports.create = (req,res) =>{
         idPrograma: req.body.idPrograma,
         foto: req.body.foto,
 
-    })
+    }
 
     //Guardar el recaudador en la base de datos.
 

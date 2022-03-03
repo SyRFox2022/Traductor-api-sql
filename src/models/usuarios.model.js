@@ -1,8 +1,8 @@
 const sql = require('./../schemas/db.js');
 
 usuarios = require('./../schemas/usuarios.schemas.js');
-//crear usuario.
 
+//crear usuario.
 usuarios.create = (nuevoUsuario,resultado) =>{
 
     sql.query("INSERT INTO usuarios SET ?",nuevoUsuario,(err,res)=>{

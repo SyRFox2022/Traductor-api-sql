@@ -4,7 +4,7 @@ const usuarios = require('./../models/usuarios.model');
 
 exports.create = (req,res) =>{
 
-    if(!res.body){
+    if(!req.body){
         res.status(400).send(
         {
             message:'El contenido no puede estar vacio,por favor rellene los campos.',
@@ -13,7 +13,7 @@ exports.create = (req,res) =>{
     }
 
     //creando un objeto para guardar los datos recibidos del front end.
-    const usuario = new usuarios({
+    const usuario ={
 
         Status: req.body.status,
         Role: req.body.role,
@@ -22,7 +22,7 @@ exports.create = (req,res) =>{
         LastName: req.body.lastName,
         Company: req.body.company,
         Password: req.body.password,
-    })
+    }
 
     //Guardar el usuario en la base de datos.
 
