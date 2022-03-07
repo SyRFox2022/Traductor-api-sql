@@ -131,7 +131,6 @@ exports.updateByCodRecaudador = (req,res) =>{
 
 }
 
-
 //BOrrar un recaudador por codRecaudador.
 
 exports.remove = (req, res) => {
