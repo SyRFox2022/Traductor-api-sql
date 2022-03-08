@@ -92,7 +92,7 @@ recaudadores.updateById = (codRecaudador,recaudadores,result) =>  {
 
 recaudadores.remove = (codRecaudador,result) =>{
 
-    sql.query("DELETE FROM recaudadores  WHERE codRecaudador = ?",codRecaudador,(err,res) =>{
+    sql.query("DELETE FROM recaudadores  WHERE codRecaudadores = ?",parseInt(codRecaudador),(err,res) =>{
 
         if(err){
             console.log("error:",err);

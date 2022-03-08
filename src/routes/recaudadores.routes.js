@@ -11,17 +11,16 @@ router.post('/',recaudadores.create);
 
 router.get('/:codRecaudador',recaudadores.findByCodRecaudador);
 
-
-//obtener todos los recaudadores
+//obtener todos los recaudadores.
 
 router.get('/',recaudadores.getAll);
 
-//aptualizar un usuario por id.
+//actualizar un recaudador por id.
     
 router.put('/:codRecaudador',recaudadores.updateByCodRecaudador);
 
-//Borrar un usuario por id.
+//Borrar un recaudador por id.
 
-router.delete('/:findBycodRecaudador',recaudadores.remove);
+router.delete('/:codRecaudador',recaudadores.remove);
 
 module.exports = router;

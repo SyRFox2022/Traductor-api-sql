@@ -1,4 +1,4 @@
-const archivos = require('./../models/archivos.schema');
+const archivos = require('./../models/archivos.model.js');
 
 
 //crear un nuevo archivo.
@@ -100,7 +100,7 @@ exports.findByCodRecaudador = (req,res) => {
 
 exports.findByid = (req,res) => {
 
-    archivos.findByid(req.params.codRecaudador,(err,data)=>{
+    archivos.findByid(req.params.id,(err,data)=>{
 
       if(err){
 
@@ -125,7 +125,7 @@ exports.findByid = (req,res) => {
 }
 //aptualizar un recaudador.
 
-exports.updateByCodRecaudador = (req,res) =>{
+exports.updateByid = (req,res) =>{
 
     if(!req.body){
         res.status(400).send({
@@ -135,7 +135,7 @@ exports.updateByCodRecaudador = (req,res) =>{
 
     console.log(req.body);
 
-    archivos.updateByCodRecaudador(
+    archivos.updateByid(
         req.params.id,
         new archivos(req.body),
         (err,data) =>{
@@ -160,7 +160,6 @@ exports.updateByCodRecaudador = (req,res) =>{
 
 }
 //Borrar un archivo
-
 
 exports.remove = (req, res) => {
     archivos.remove(req.params.id, (err, data) => {

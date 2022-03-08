@@ -93,7 +93,7 @@ usuarios.updateById = (id,usuario,result) =>  {
 
 usuarios.remove = (id,result) =>{
 
-    sql.query("DELETE FROM usuarios  WHERE id = ?",id,(err,res) =>{
+    sql.query("DELETE * FROM usuarios  WHERE id = ?",id,(err,res) =>{
 
         if(err){
             console.log("error:",err);

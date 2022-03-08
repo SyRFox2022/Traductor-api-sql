@@ -128,7 +128,7 @@ archivos.updateById = (id,archivos,result) =>  {
 
 archivos.remove = (id,result) =>{
 
-    sql.query("DELETE FROM archivos  WHERE id = ?",id,(err,res) =>{
+    sql.query("DELETE * FROM archivos  WHERE id = ?",id,(err,res) =>{
 
         if(err){
             console.log("error:",err);
