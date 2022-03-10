@@ -176,3 +176,22 @@ exports.remove = (req, res) => {
       } else res.send({ message: `recaudador eliminado con exito.` });
     });
   };
+
+//borrar todos los archivos con cod recuadadores.
+
+
+exports.removeAllByCodRecaudadores = (req, res) => {
+    archivos.removeAllByCodRecaudadores(req.params.codRecaudadores, (err, data) => {
+      if (err) {
+        if (err.kind === "No_encontrado") {
+          res.status(404).send({
+            message: `No encontarmos recaudador con el codRecaudadores ${req.params.codRecaudadores}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "No pudimos eliminar el recaudador con codRecaudadores " + req.params.codRecaudadores
+          });
+        }
+      } else res.send({ message: `recaudador eliminado con exito.` });
+    });
+  };

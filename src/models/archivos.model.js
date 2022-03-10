@@ -147,6 +147,32 @@ archivos.remove = (id,result) =>{
 
 }
 
+
+
+//borrar todos los archivos de un cod.
+
+archivos.removeAllByCodRecaudadores = (codRecaudadores,result) =>{
+
+    sql.query("DELETE * FROM archivos  WHERE codRecaudadores = ?",codRecaudadores,(err,res) =>{
+
+        if(err){
+            console.log("error:",err);
+            result(null,err);
+            return; 
+        }
+
+        if(res.affectedRows == 0){
+            result({kind:'No_Encontrado'},null);
+            return;
+        }
+
+        console.log("Usuario eliminado con la codRecaudadores:" ,codRecaudadores);
+        result(null,res);
+    });
+
+}
+
+
 module.exports = archivos;
 
 

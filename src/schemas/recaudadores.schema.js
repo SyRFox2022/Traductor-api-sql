@@ -4,7 +4,6 @@ exports.recaudadores = function(recaudador){
     this.nombre = recaudador.nombre,
     this.tipoArchivo = recaudador.tipoArchivo,
     this.estado = recaudador.estado,
-    this.idPrograma = recaudador.idPrograma,
-    this.foto = recaudador.foto
+    this.idPrograma = recaudador.idPrograma
 
 };

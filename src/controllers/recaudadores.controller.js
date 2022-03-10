@@ -22,7 +22,6 @@ exports.create = (req,res) =>{
         tipoArchivo: req.body.tipoArchivo,
         estado:req.body.estado,
         idPrograma: req.body.idPrograma,
-        foto: req.body.foto,
 
     }
 
@@ -107,8 +106,8 @@ exports.updateByCodRecaudador = (req,res) =>{
     console.log(req.body);
 
     recaudadores.updateByCodRecaudador(
-        req.params.id,
-        new recaudadores(req.body),
+        req.params.codRecaudador,
+        req.body,
         (err,data) =>{
             if(err){
                 if(err.kind === 'No_Encontrado'){
@@ -134,15 +133,15 @@ exports.updateByCodRecaudador = (req,res) =>{
 //BOrrar un recaudador por codRecaudador.
 
 exports.remove = (req, res) => {
-    recaudadores.remove(req.params.codRecaudador, (err, data) => {
+    recaudadores.remove(req.params.codRecaudadores, (err, data) => {
       if (err) {
         if (err.kind === "No_encontrado") {
           res.status(404).send({
-            message: `No encontarmos recaudador con el codRecaudador ${req.params.codRecaudador}.`
+            message: `No encontarmos recaudador con el codRecaudador ${req.params.codRecaudadores}.`
           });
         } else {
           res.status(500).send({
-            message: "No pudimos eliminar el recaudador con codRecaudador " + req.params.codRecaudador
+            message: "No pudimos eliminar el recaudador con codRecaudador " + req.params.codRecaudadores
           });
         }
       } else res.send({ message: `recaudador eliminado con exito.` });

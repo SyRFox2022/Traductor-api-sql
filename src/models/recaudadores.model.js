@@ -59,12 +59,12 @@ recaudadores.getAll = (result) =>{
  
 //aptualizar un recaudador.
 
-recaudadores.updateById = (codRecaudador,recaudadores,result) =>  {
+recaudadores.updateByCodRecaudador = (codRecaudadores,recaudadores,result) =>  {
 
     sql.query(
 
-        "UPDATE recaudadores SET codRecaudador = ?,nombre = ?,tipoArchivo = ?,estado = ?, idPrograma = ?,foto = ?  WHERE codRecaudador = ?",
-        [recaudadores.status,recaudadores.role,recaudadores.mail,recaudadores.firstName,recaudadores.lastName,recaudadores.company,recaudadores.password],
+        `UPDATE recaudadores SET codRecaudadores = ?,nombre = ?,tipoArchivo = ?,estado = ?, idPrograma = ? WHERE codRecaudadores = ${codRecaudadores}`,
+        [recaudadores.codRecaudadores,recaudadores.nombre,recaudadores.tipoArchivo,recaudadores.estado,recaudadores.idPrograma],
         (err,res) =>{
             
             if(err){    
@@ -79,8 +79,8 @@ recaudadores.updateById = (codRecaudador,recaudadores,result) =>  {
                 return;
             }
 
-            console.log("aptualizado recaudadores:",{codRecaudador:codRecaudador,...usuario});
-            result(null,{codRecaudador:codRecaudador,...usuario});
+            console.log("actualizando recaudadores:",{codRecaudadores:codRecaudadores,...recaudadores});
+            result(null,{codRecaudadores:codRecaudadores,...recaudadores});
         
         }
 
@@ -105,7 +105,7 @@ recaudadores.remove = (codRecaudador,result) =>{
             return;
         }
 
-        console.log("Usuario eliminado con la codRecaudador:" ,codRecaudador);
+        console.log("Usuario eliminado con la codRecaudadores:" ,codRecaudador);
         result(null,res);
     });
 

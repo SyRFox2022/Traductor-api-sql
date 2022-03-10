@@ -11,6 +11,7 @@ let  usersRouter = require('./routes/usuarios.routes');
 let  recaudadoresRouter = require('./routes/recaudadores.routes');
 let archivosRouter = require('./routes/archivos.routes');
 
+
 let  corsOptions = {
   origin: "http://localhost:4000"
 };

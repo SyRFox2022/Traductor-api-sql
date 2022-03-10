@@ -18,7 +18,6 @@ router.get('/:codREcaudador',archivos.findByCodRecaudador);
     
 router.get('/:id',archivos.findByid);
 
-
 //buscar un archivo por id.
     
 router.put('/:id',archivos.updateByid);
@@ -27,5 +26,8 @@ router.put('/:id',archivos.updateByid);
 
 router.delete('/:id',archivos.remove);
 
+//borrar todos los archivos de un recaudador.
+
+router.delete("/codRecaudadores",archivos.removeAllByCodRecaudadores);
 
 module.exports = router;

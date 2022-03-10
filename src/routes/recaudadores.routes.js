@@ -15,11 +15,11 @@ router.get('/:codRecaudador',recaudadores.findByCodRecaudador);
 
 router.get('/',recaudadores.getAll);
 
-//actualizar un recaudador por id.
+//actualizar un recaudador por cod.
     
 router.put('/:codRecaudador',recaudadores.updateByCodRecaudador);
 
-//Borrar un recaudador por id.
+//Borrar un recaudador por cod.
 
 router.delete('/:codRecaudador',recaudadores.remove);
 
