@@ -1,26 +1,58 @@
-const recaudadores = require('./../controllers/recaudadores.controller.js');
+import express from 'express';
 
-let router = require("express").Router();
+import { create , findByCodRecaudador , getAll , updateByCodRecaudador , remove } from  './../controllers/recaudadores.controller';
+
+import {validateResourceNW} from '../middlewares/validateResources.js';
+
+import recaudadoresSchema from '../schemas/recaudadores.validation.js';
+
+const recaudadoresRouter = express.Router();
 
 //Crear nuevo usuario.
 
-router.post('/',recaudadores.create);
+recaudadoresRouter.post('/',(req,res,next)=>{
 
+
+    const validate = validateResourceNW(recaudadoresSchema,req.body);
+    
+    if(validate.error == null){
+        console.log("entro");
+       
+        create(req,res);
+
+    }else{
+        res.send(validate.error);
+    }
+
+});
 
 //obtener un recaudador por codRecaudador.
 
-router.get('/:codRecaudador',recaudadores.findByCodRecaudador);
+recaudadoresRouter.get('/:codRecaudador',findByCodRecaudador);
 
 //obtener todos los recaudadores.
 
-router.get('/',recaudadores.getAll);
+recaudadoresRouter.get('/',getAll);
 
 //actualizar un recaudador por cod.
     
-router.put('/:codRecaudador',recaudadores.updateByCodRecaudador);
+recaudadoresRouter.put('/:codRecaudador',(req,res,next)=>{
+
+    const validate = validateResourceNW(usuariosSchema,req.body);
+    
+    if(validate.error == null){
+        console.log("entro");
+       
+        updateByCodRecaudador(req,res);
+
+    }else{
+        res.send(validate.error);
+    }
+
+});
 
 //Borrar un recaudador por cod.
 
-router.delete('/:codRecaudador',recaudadores.remove);
+recaudadoresRouter.delete('/:codRecaudador',remove);
 
-module.exports = router;
+export {recaudadoresRouter};

@@ -1,6 +1,6 @@
-const sql = require('./../schemas/db.js');
+import {connection as sql} from './../schemas/db.js';
+import usuarios from './../schemas/usuarios.schemas.js'
 
-usuarios = require('./../schemas/usuarios.schemas.js');
 
 //crear usuario.
 usuarios.create = (nuevoUsuario,resultado) =>{
@@ -21,7 +21,7 @@ usuarios.create = (nuevoUsuario,resultado) =>{
 
 usuarios.findByMail = (mail,resultado) =>{
 
-    sql.query(`SELECT * FROM usuarios WHERE mail = ${mail}`,(err,res)=>{
+    sql.query(`SELECT * FROM usuarios WHERE mail = "${mail}"`,(err,res)=>{
         
         if(err){
             console.log('error:',err);
@@ -113,4 +113,4 @@ usuarios.remove = (id,result) =>{
 }
 
 
-module.exports = usuarios;
+export{ usuarios };

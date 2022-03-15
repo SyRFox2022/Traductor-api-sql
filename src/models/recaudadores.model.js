@@ -1,6 +1,5 @@
-const sql = require('./../schemas/db.js');
-
-recaudadores = require('./../schemas/recaudadores.schema');
+import {connection as sql} from './../schemas/db.js';
+import recaudadores from './../schemas/recaudadores.schema'
 
 recaudadores.create = (nuevoRecaudador,resultado) =>{
 
@@ -92,7 +91,7 @@ recaudadores.updateByCodRecaudador = (codRecaudadores,recaudadores,result) =>  {
 
 recaudadores.remove = (codRecaudador,result) =>{
 
-    sql.query("DELETE FROM recaudadores  WHERE codRecaudadores = ?",parseInt(codRecaudador),(err,res) =>{
+    sql.query(`DELETE FROM recaudadores  WHERE codRecaudadores = ${codRecaudador}`,codRecaudador,(err,res) =>{
 
         if(err){
             console.log("error:",err);
@@ -105,10 +104,10 @@ recaudadores.remove = (codRecaudador,result) =>{
             return;
         }
 
-        console.log("Usuario eliminado con la codRecaudadores:" ,codRecaudador);
+        console.log("recaudador eliminado con la codRecaudadores:" ,codRecaudador);
         result(null,res);
     });
 
 }
 
-module.exports = recaudadores;
+export  {recaudadores};

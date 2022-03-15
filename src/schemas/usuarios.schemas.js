@@ -1,4 +1,4 @@
-exports.usuarios = function(usuario){
+const usuarios = function(usuario){
 
     this.id = usuario.id,
     this.status = usuario.status,
@@ -10,3 +10,6 @@ exports.usuarios = function(usuario){
     this.password = usuario.password
 
 };
+
+
+export default {usuarios};

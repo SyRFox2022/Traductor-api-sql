@@ -1,27 +1,53 @@
-const usuarios = require('./../controllers/usuarios.controller');
+import express from 'express';
+import {validateResourceNW} from '../middlewares/validateResources.js';
+import usuariosSchema from '../schemas/usuario.validation.js';
+import { create , findByMail , getAll , updateById , remove } from  './../controllers/usuarios.controller';
 
-let router = require("express").Router();
+const usersRouter = express.Router();
 
-//Crear nuevo usuario.
+//Crear nuevo usuario  usuarios.create.
 
-router.post('/',usuarios.create);
+usersRouter.post('/', (req,res,next)=>{
 
+    const validate = validateResourceNW(usuariosSchema,req.body);
+    
+    if(validate.error == null){
+        console.log("entro");
+       
+        create(req,res);
+
+    }else{
+        res.send(validate.error);
+    }
+});
 
 //obtener un usuario por Mail.
 
-router.get('/:mail',usuarios.findByMail);
-
+usersRouter.get('/:mail',findByMail);
 
 //obtener todos los usuarios
 
-router.get('/',usuarios.getAll);
+usersRouter.get('/',getAll);
 
 //aptualizar un usuario por id.
     
-router.put('/:id',usuarios.updateById);
+usersRouter.put('/:id',(req,res,next) =>{
+
+    const validate = validateResourceNW(usuariosSchema,req.body);
+    
+    if(validate.error == null){
+        console.log("entro");
+       
+        updateById(req,res);
+
+    }else{
+        res.send(validate.error);
+    }
+
+});
 
 //Borrar un usuario por id.
 
-router.delete('/:id',usuarios.remove);
+usersRouter.delete('/:id',remove);
 
-module.exports = router;
+export { usersRouter };

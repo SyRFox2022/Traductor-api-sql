@@ -1,13 +1,14 @@
-const mysql = require('mysql');
-const dbConfig = require('./../config/db.config.js');
+import mysql from 'mysql';
+import {dbconfig} from './../config/db.config.js';
+
 
 //crear conexion a la base de datos.
 const connection = mysql.createConnection({
 
-    host:dbConfig.HOST,
-    user:dbConfig.USER,
-    password:dbConfig.PASSWORD,
-    database:dbConfig.DB,
+    host:dbconfig.HOST,
+    user:dbconfig.USER,
+    password:dbconfig.PASSWORD,
+    database:dbconfig.DB,
 
 });
 
@@ -18,8 +19,7 @@ connection.connect(error =>{
     console.log('Conexion con la base de datos exitosa.');
 })
 
-module.exports = connection;
-
+export  { connection } ;
 
 
 

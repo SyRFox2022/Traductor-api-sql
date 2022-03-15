@@ -1,8 +1,8 @@
-const recaudadores = require('./../models/recaudadores.model');
+import {recaudadores} from './../models/recaudadores.model';
 
 //Crear un nuevo recaudador.
 
-exports.create = (req,res) =>{
+export  const create = (req,res) =>{
 
     if(!req.body){
         res.status(400).send(
@@ -46,7 +46,7 @@ exports.create = (req,res) =>{
 
 //buscar un recaudador por codRecaudador.
 
-exports.findByCodRecaudador = (req,res) => {
+export const findByCodRecaudador = (req,res) => {
 
     recaudadores.findByCodRecaudador(req.params.codRecaudador,(err,data)=>{
 
@@ -75,7 +75,7 @@ exports.findByCodRecaudador = (req,res) => {
 //obtener todos los recaudadores.
 
 
-exports.getAll = (req,res) =>{
+export  const getAll = (req,res) =>{
     
     recaudadores.getAll((err,data)=>{
 
@@ -95,7 +95,7 @@ exports.getAll = (req,res) =>{
 
 //aptualizar un recaudadores por id.
 
-exports.updateByCodRecaudador = (req,res) =>{
+export  const updateByCodRecaudador = (req,res) =>{
 
     if(!req.body){
         res.status(400).send({
@@ -132,16 +132,17 @@ exports.updateByCodRecaudador = (req,res) =>{
 
 //BOrrar un recaudador por codRecaudador.
 
-exports.remove = (req, res) => {
-    recaudadores.remove(req.params.codRecaudadores, (err, data) => {
-      if (err) {
+export const remove = (req, res) => {
+    recaudadores.remove(req.params.codRecaudador, (err, data) => {
+
+        if (err) {
         if (err.kind === "No_encontrado") {
           res.status(404).send({
-            message: `No encontarmos recaudador con el codRecaudador ${req.params.codRecaudadores}.`
+            message: `No encontarmos recaudador con el codRecaudador ${req.params.codRecaudador}.`
           });
         } else {
           res.status(500).send({
-            message: "No pudimos eliminar el recaudador con codRecaudador " + req.params.codRecaudadores
+            message: "No pudimos eliminar el recaudador con codRecaudador " + req.params.codRecaudador
           });
         }
       } else res.send({ message: `recaudador eliminado con exito.` });

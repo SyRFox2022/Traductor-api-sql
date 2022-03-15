@@ -1,9 +1,8 @@
-const archivos = require('./../models/archivos.model.js');
-
+import {archivos} from "./../models/archivos.model.js";
 
 //crear un nuevo archivo.
 
-exports.create = (req,res) =>{
+export const create = (req,res) =>{
 
     if(!req.body){
         res.status(400).send({
@@ -49,9 +48,9 @@ exports.create = (req,res) =>{
 
 //obtener todos los archivos
 
-exports.getALl = (req,res) =>{
+export const getALl = (req,res) =>{
 
-    archivos.getALl((err,data)=>{
+    archivos.getAll((err,data)=>{
 
         if(err){
             res.status(500).send({
@@ -70,7 +69,7 @@ exports.getALl = (req,res) =>{
 //obtenter todos los archivos de una entidad.
 
 
-exports.findByCodRecaudador = (req,res) => {
+export const findByCodRecaudador = (req,res) => {
 
     archivos.findByCodRecaudador(req.params.codRecaudador,(err,data)=>{
 
@@ -98,7 +97,7 @@ exports.findByCodRecaudador = (req,res) => {
 
 //buscar un archivo por id.
 
-exports.findByid = (req,res) => {
+export const findByid = (req,res) => {
 
     archivos.findByid(req.params.id,(err,data)=>{
 
@@ -125,7 +124,7 @@ exports.findByid = (req,res) => {
 }
 //aptualizar un recaudador.
 
-exports.updateByid = (req,res) =>{
+export const updateByid = (req,res) =>{
 
     if(!req.body){
         res.status(400).send({
@@ -161,7 +160,7 @@ exports.updateByid = (req,res) =>{
 }
 //Borrar un archivo
 
-exports.remove = (req, res) => {
+export const remove = (req, res) => {
     archivos.remove(req.params.id, (err, data) => {
       if (err) {
         if (err.kind === "No_encontrado") {
@@ -180,7 +179,7 @@ exports.remove = (req, res) => {
 //borrar todos los archivos con cod recuadadores.
 
 
-exports.removeAllByCodRecaudadores = (req, res) => {
+export const removeAllByCodRecaudadores = (req, res) => {
     archivos.removeAllByCodRecaudadores(req.params.codRecaudadores, (err, data) => {
       if (err) {
         if (err.kind === "No_encontrado") {

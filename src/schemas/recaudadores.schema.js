@@ -1,4 +1,4 @@
-exports.recaudadores = function(recaudador){
+const recaudadores = function(recaudador){
 
     this.codRecaudadores = recaudador.codRecaudadores,
     this.nombre = recaudador.nombre,
@@ -7,3 +7,5 @@ exports.recaudadores = function(recaudador){
     this.idPrograma = recaudador.idPrograma
 
 };
+
+export default {recaudadores};

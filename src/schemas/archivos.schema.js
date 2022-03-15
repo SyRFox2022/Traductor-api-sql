@@ -1,5 +1,5 @@
 
-exports.archivos = function(archivo){
+const archivos = function(archivo){
 
     this.nombre = archivo.nombre,
     this.entidad = archivo.entidad,
@@ -9,3 +9,6 @@ exports.archivos = function(archivo){
     this.codRecaudadores = archivo.codRecaudadores
 
 };
+
+
+export default {archivos};

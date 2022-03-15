@@ -1,6 +1,5 @@
-const sql = require('./../schemas/db.js');
-
-archivos = require('./../schemas/archivos.schema');
+import {connection as sql} from './../schemas/db.js';
+import archivos from './../schemas/archivos.schema'
 
 //ingresar un nuevo archivo a la base.
 
@@ -172,8 +171,7 @@ archivos.removeAllByCodRecaudadores = (codRecaudadores,result) =>{
 
 }
 
-
-module.exports = archivos;
+export {archivos};
 
 
 

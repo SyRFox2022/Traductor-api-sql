@@ -1,33 +1,64 @@
-const archivos = require('./../controllers/archivos.controller.js');
+import express from 'express';
 
-let router = require("express").Router();
+import { create , getALl , findByCodRecaudador , findByid , updateByid ,remove,removeAllByCodRecaudadores} from  './../controllers/archivos.controller';
 
-//Crear nuevo usuario.
+import {validateResourceNW} from '../middlewares/validateResources.js';
+import archivosSchema from '../schemas/archivos.validation';
 
-router.post('/',archivos.create);
+const archivosRouter = express.Router();
 
-//obtener todos los archivos.
+//Crear nuevo archivo.
 
-router.get('/',archivos.getALl);
+archivosRouter.post('/',(req,res,next)=>{
+
+    const validate = validateResourceNW(archivosSchema,req.body);
+    
+    if(validate.error == null){
+        console.log("entro");
+       
+        create(req,res);
+
+    }else{
+        res.send(validate.error);
+    }
+
+});
+
+//obtener todos los  arcgivos
+
+archivosRouter.get('/',getALl);
 
 //obtener todos los archivos de una entidad.
 
-router.get('/:codREcaudador',archivos.findByCodRecaudador);
+archivosRouter.get('/:codREcaudador',findByCodRecaudador);
 
 //buscar un archivo por id.
     
-router.get('/:id',archivos.findByid);
+archivosRouter.get('/:id',findByid);
 
-//buscar un archivo por id.
+//aptualizar un archivo por id.
     
-router.put('/:id',archivos.updateByid);
+archivosRouter.put('/:id',(req,res,next)=>{
 
-//Borrar un recaudador por id.
+    const validate = validateResourceNW(usuariosSchema,req.body);
+    
+    if(validate.error == null){
+        console.log("entro");
+       
+        updateById(req,res);
 
-router.delete('/:id',archivos.remove);
+    }else{
+        res.send(validate.error);
+    }
+
+});
+
+//Borrar un archivo por id.
+
+archivosRouter.delete('/:id',remove);
 
 //borrar todos los archivos de un recaudador.
 
-router.delete("/codRecaudadores",archivos.removeAllByCodRecaudadores);
+archivosRouter.delete("/codRecaudadores",removeAllByCodRecaudadores);
 
-module.exports = router;
+export {archivosRouter};

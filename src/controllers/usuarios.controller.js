@@ -1,8 +1,8 @@
-const usuarios = require('./../models/usuarios.model');
-
+import {usuarios} from "./../models/usuarios.model";
 //Crear un nuevo usuario.
 
-exports.create = (req,res) =>{
+
+export const create = (req,res) =>{
 
     if(!req.body){
         res.status(400).send(
@@ -22,7 +22,10 @@ exports.create = (req,res) =>{
         LastName: req.body.lastName,
         Company: req.body.company,
         Password: req.body.password,
+  
     }
+
+    console.log(usuario);
 
     //Guardar el usuario en la base de datos.
 
@@ -42,7 +45,7 @@ exports.create = (req,res) =>{
 
 //buscar un usuario por Mail.
 
-exports.findByMail = (req,res) => {
+export const findByMail = (req,res) => {
 
     usuarios.findByMail(req.params.mail,(err,data)=>{
 
@@ -71,7 +74,7 @@ exports.findByMail = (req,res) => {
 //obtener todos los usuarios.
 
 
-exports.getAll = (req,res) =>{
+export const getAll = (req,res) =>{
     
     usuarios.getAll((err,data)=>{
 
@@ -91,7 +94,7 @@ exports.getAll = (req,res) =>{
 
 //aptualizar un usuarios por id.
 
-exports.updateById = (req,res) =>{
+export const updateById = (req,res) =>{
 
     if(!req.body){
         res.status(400).send({
@@ -129,7 +132,7 @@ exports.updateById = (req,res) =>{
 
 //BOrrar un usuario por id.
 
-exports.remove = (req, res) => {
+export const remove = (req, res) => {
     usuarios.remove(req.params.id, (err, data) => {
       if (err) {
         if (err.kind === "No_encontrado") {
@@ -144,3 +147,4 @@ exports.remove = (req, res) => {
       } else res.send({ message: `Usuario eliminado con exito.` });
     });
   };
+
