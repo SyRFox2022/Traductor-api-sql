@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node src/server.js"
+    "predev":"fuser -k 5000/tcp && echo 'Terminated' || echo 'Nothing was running on the PORT'",
+    "dev": "npm run predev && nodemon --experimental-modules --es-module-specifier-resolution=node src/server.js"
   },
   "repository": {
     "type": "git",

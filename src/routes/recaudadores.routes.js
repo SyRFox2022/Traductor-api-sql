@@ -21,7 +21,7 @@ recaudadoresRouter.post('/',(req,res,next)=>{
         create(req,res);
 
     }else{
-        res.send(validate.error);
+        res.status(400).send(validate.error);
     }
 
 });
@@ -46,7 +46,7 @@ recaudadoresRouter.put('/:codRecaudador',(req,res,next)=>{
         updateByCodRecaudador(req,res);
 
     }else{
-        res.send(validate.error);
+        res.status(400).send(validate.error);
     }
 
 });

@@ -19,7 +19,7 @@ archivosRouter.post('/',(req,res,next)=>{
         create(req,res);
 
     }else{
-        res.send(validate.error);
+        res.status(400).send(validate.error);
     }
 
 });
@@ -48,7 +48,7 @@ archivosRouter.put('/:id',(req,res,next)=>{
         updateById(req,res);
 
     }else{
-        res.send(validate.error);
+        res.status(400).send(validate.error);
     }
 
 });
