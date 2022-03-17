@@ -1,6 +1,6 @@
 import express from 'express';
 import {validateResourceNW} from '../middlewares/validateResources.js';
-import usuariosSchema from '../schemas/usuario.validation.js';
+import usuariosSchema from '../validators/usuario.validation.js';
 import { create , findByMail , getAll , updateById , remove } from  './../controllers/usuarios.controller';
 import {validateExistenceUser} from "../middlewares/validateExistenceUser.js";
 
@@ -10,8 +10,11 @@ const usersRouter = express.Router();
 
 usersRouter.post('/',(req,res,next)=>{
 
+    //verificar que los datos llegen en un buen formato.
     const validate = validateResourceNW(usuariosSchema,req.body);
     
+    //si el formato esta en orden , verificar si el usuario que se intenta crear
+    // ya existe
     if(validate.error == null){
 
         validateExistenceUser(req.body.mail,(err,data)=>{
@@ -25,7 +28,8 @@ usersRouter.post('/',(req,res,next)=>{
             }
             
             else{
-    
+                
+                //si el usuario no existe, crearlo.
                 if(data === false){
             
                     create(req,res);
@@ -55,10 +59,10 @@ usersRouter.get('/',getAll);
     
 usersRouter.put('/:id',(req,res,next) =>{
 
+    //Verificar que los datos vengan en un buen formato.
     const validate = validateResourceNW(usuariosSchema,req.body);
     
     if(validate.error == null){
-        console.log("entro");
        
         updateById(req,res);
 

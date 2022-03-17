@@ -4,7 +4,9 @@ import { create , findByCodRecaudador , getAll , updateByCodRecaudador , remove 
 
 import {validateResourceNW} from '../middlewares/validateResources.js';
 
-import recaudadoresSchema from '../schemas/recaudadores.validation.js';
+import recaudadoresSchema from '../validators/recaudadores.validation.js';
+
+import { validateExistenceRecaudador } from '../middlewares/validateExistenceRecaudador';
 
 const recaudadoresRouter = express.Router();
 
@@ -12,13 +14,34 @@ const recaudadoresRouter = express.Router();
 
 recaudadoresRouter.post('/',(req,res,next)=>{
 
-
     const validate = validateResourceNW(recaudadoresSchema,req.body);
     
     if(validate.error == null){
-        console.log("entro");
-       
-        create(req,res);
+        
+        validateExistenceRecaudador(req.body.codRecaudadores,(err,data)=>{
+        
+        if(err){
+            
+            console.log(err,'error');
+            res.status(500).send({
+                message: "Error al intentar crear un Recaudador."
+            });
+
+        }
+        else{
+            if(data === false){
+
+                create(req,res);      
+            
+            }
+            else{
+            
+                res.status(400).send({message:"El ente Recaudador Ya existe."});
+            
+            }
+
+        }
+        })
 
     }else{
         res.status(400).send(validate.error);
@@ -38,10 +61,9 @@ recaudadoresRouter.get('/',getAll);
     
 recaudadoresRouter.put('/:codRecaudador',(req,res,next)=>{
 
-    const validate = validateResourceNW(usuariosSchema,req.body);
+    const validate = validateResourceNW(recaudadoresSchema,req.body);
     
     if(validate.error == null){
-        console.log("entro");
        
         updateByCodRecaudador(req,res);
 

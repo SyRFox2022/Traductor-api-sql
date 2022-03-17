@@ -3,7 +3,7 @@ import express from 'express';
 import { create , getALl , findByCodRecaudador , findByid , updateByid ,remove,removeAllByCodRecaudadores} from  './../controllers/archivos.controller';
 
 import {validateResourceNW} from '../middlewares/validateResources.js';
-import archivosSchema from '../schemas/archivos.validation';
+import archivosSchema from '../validators/archivos.validation';
 
 const archivosRouter = express.Router();
 
@@ -14,7 +14,6 @@ archivosRouter.post('/',(req,res,next)=>{
     const validate = validateResourceNW(archivosSchema,req.body);
     
     if(validate.error == null){
-        console.log("entro");
        
         create(req,res);
 
@@ -40,11 +39,10 @@ archivosRouter.get('/:id',findByid);
     
 archivosRouter.put('/:id',(req,res,next)=>{
 
-    const validate = validateResourceNW(usuariosSchema,req.body);
+    const validate = validateResourceNW(archivosSchema,req.body);
     
     if(validate.error == null){
-        console.log("entro");
-       
+
         updateById(req,res);
 
     }else{
