@@ -12,13 +12,9 @@ import { usersRouter } from "./routes/usuarios.routes.js";
 import {recaudadoresRouter}  from "./routes/recaudadores.routes.js"
 import {archivosRouter} from "./routes/archivos.routes.js"
 
-let  corsOptions = {
-  origin: "http://localhost:4000"
-};
-
 //middlewares.
-app.use(cors(corsOptions));
-app.use(express.json());
+app.use(cors());
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
