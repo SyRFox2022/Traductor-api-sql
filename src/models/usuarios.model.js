@@ -39,6 +39,29 @@ usuarios.findByMail = (mail,resultado) =>{
     })
 }
 
+//buscar un usuario usando como la id.
+
+usuarios.findByid = (id,resultado) =>{
+
+    sql.query(`SELECT * FROM usuarios WHERE id = "${id}"`,(err,res)=>{
+        
+        if(err){
+            console.log('error:',err);
+            resultado(err,null);
+            return;
+        }
+
+        if(res.length){
+            console.log('Usuario encontrado:',id);
+            resultado(null,res);
+            return;
+        }
+
+        resultado({kind:"not_found"},null);
+    })
+}
+
+
 //obtener todos los usuarios.
 
 usuarios.getAll = (result) =>{

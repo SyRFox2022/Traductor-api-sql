@@ -71,6 +71,33 @@ export const findByMail = (req,res) => {
     })
 }
 
+//buscar por id.
+
+export const findById = (req,res) => {
+
+    usuarios.findByid(req.params.id,(err,data)=>{
+
+      if(err){
+
+        //Si no se encuentra ningun usuario con ese id.
+        if(err.kind === 'No_Encontrado'){ 
+            res.status(404).send({
+                message:`No podimos encontrar un usuario con el id: ${req.params.id} `
+            })
+        }
+        else{
+            res.status(500).send({
+                message: `Error al intentar buscar por el id: ${req.param.id}`
+            })
+        }
+      }  
+      else{
+        console.log("usuarios obtenido");
+        res.send(data);
+      }
+
+    })
+}
 //obtener todos los usuarios.
 
 

@@ -1,7 +1,7 @@
 import express from 'express';
 import {validateResourceNW} from '../middlewares/validateResources.js';
 import usuariosSchema from '../validators/usuario.validation.js';
-import { create , findByMail , getAll , updateById , remove } from  './../controllers/usuarios.controller';
+import { create , findByMail , getAll , updateById , remove , findById } from  './../controllers/usuarios.controller';
 import {validateExistenceUser} from "../middlewares/validateExistenceUser.js";
 
 const usersRouter = express.Router();
@@ -51,6 +51,10 @@ usersRouter.post('/',(req,res,next)=>{
 
 usersRouter.get('/:mail',findByMail);
 
+
+//buscar por id.
+
+usersRouter.get('/Buscar/:id',findById);
 //obtener todos los usuarios
 
 usersRouter.get('/',getAll);
