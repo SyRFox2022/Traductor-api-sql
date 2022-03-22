@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.json({ message: "Traductor API SQL" });
-});
+}); 
 
 //routes
 app.use('/usuarios',usersRouter);
@@ -32,5 +32,3 @@ const PORT =  5000 ||  process.env.PORT;
 app.listen(PORT, () => {
   console.log(`El servidor esta funcionando en el puerto: ${PORT}.`);
 });
-
-

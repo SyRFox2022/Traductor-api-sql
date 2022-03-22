@@ -30,7 +30,7 @@ usuarios.findByMail = (mail,resultado) =>{
         }
 
         if(res.length){
-            console.log('Usuario encontrado:',res);
+            console.log('Usuario encontrado:',mail);
             resultado(null,res);
             return;
         }
@@ -52,7 +52,7 @@ usuarios.getAll = (result) =>{
             return;
         }
 
-        console.log("usuarios:" ,res);
+        console.log("usuarios encontrados.");
         result(null,res);
 
     })
@@ -80,7 +80,7 @@ usuarios.updateById = (id,usuario,result) =>  {
                 return;
             }
 
-            console.log("aptualizado usuario:",{id:id,...usuario});
+            console.log("aptualizado usuario con la id",id);
             result(null,{id:id,...usuario});
         
         }
@@ -93,7 +93,7 @@ usuarios.updateById = (id,usuario,result) =>  {
 
 usuarios.remove = (id,result) =>{
 
-    sql.query("DELETE * FROM usuarios  WHERE id = ?",id,(err,res) =>{
+    sql.query(`DELETE FROM usuarios  WHERE id = ${parseInt(id)}`,(err,res) =>{
 
         if(err){
             console.log("error:",err);

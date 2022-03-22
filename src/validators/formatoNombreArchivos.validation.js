@@ -6,7 +6,7 @@ const formatoNombreArchivosSchema  = joi.object({
     archivo : joi.number().required().min(1),
     estado : joi.string().required().max(2).min(1),
     tipoArchivo: joi.string().required().max(1).min(1),
-    entidad: joi.string().required().max(30).min(1),
+    entidad: joi.number().required().max(30).min(1),
     
 })
 

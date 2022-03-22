@@ -10,7 +10,7 @@ recaudadores.create = (nuevoRecaudador,resultado) =>{
             resultado(err,null);
             return;
         }
-        console.log('Recaudador creado:',{id:res.insertID,...nuevoRecaudador});
+        console.log('Recaudador creado con la id:',id);
         resultado(null,{id:res.insertID,...nuevoRecaudador});
     });
 };
@@ -28,7 +28,7 @@ recaudadores.findByCodRecaudador = (codRecaudador,resultado) =>{
         }
 
         if(res.length){
-            console.log('recaudador  encontrado:',res);
+            console.log('recaudador  encontrado con el cod',codRecaudador);
             resultado(null,res);
             return;
         }
@@ -50,7 +50,7 @@ recaudadores.getAll = (result) =>{
             return;
         }
 
-        console.log("recaudadores:" ,res);
+        console.log("recaudadores encontrados.");
         result(null,res);
 
     })
@@ -78,7 +78,7 @@ recaudadores.updateByCodRecaudador = (codRecaudadores,recaudadores,result) =>  {
                 return;
             }
 
-            console.log("actualizando recaudadores:",{codRecaudadores:codRecaudadores,...recaudadores});
+            console.log("actualizando recaudador con codrecaudadores:",codRecaudadores);
             result(null,{codRecaudadores:codRecaudadores,...recaudadores});
         
         }

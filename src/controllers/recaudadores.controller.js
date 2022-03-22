@@ -55,7 +55,7 @@ export const findByCodRecaudador = (req,res) => {
         //Si no se encuentra ningun usuario con ese codRecaudador.
         if(err.kind === 'No_Encontrado'){ 
             res.status(404).send({
-                message:`No podimos encontrar un usuario con el codRecaudador: ${req.params.codRecaudador} `
+                message:`No podimos encontrar un recaudador con el codRecaudador: ${req.params.codRecaudador} `
             })
         }
         else{

@@ -32,7 +32,7 @@ archivos.getAll = (resultado) =>{
             return;
         }
 
-        console.log("archivos",res);
+        console.log("archivos encontrados.");
         resultado(null,res);
     })
 }
@@ -152,7 +152,7 @@ archivos.remove = (id,result) =>{
 
 archivos.removeAllByCodRecaudadores = (codRecaudadores,result) =>{
 
-    sql.query("DELETE * FROM archivos  WHERE codRecaudadores = ?",codRecaudadores,(err,res) =>{
+    sql.query("DELETE FROM archivos  WHERE codRecaudadores = ?",codRecaudadores,(err,res) =>{
 
         if(err){
             console.log("error:",err);
