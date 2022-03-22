@@ -9,10 +9,11 @@ dotenv.config();
 
 //import routers 
 import { usersRouter } from "./routes/usuarios.routes.js";
-import {recaudadoresRouter}  from "./routes/recaudadores.routes.js"
-import {archivosRouter} from "./routes/archivos.routes.js"
+import {recaudadoresRouter}  from "./routes/recaudadores.routes.js";
+import {archivosRouter} from "./routes/archivos.routes.js";
+import {formatoNombreArchivosRouter} from "./routes/formatoNombreArchivos.routes.js";
 
-//middlewares.
+//configuraciones.
 app.use(cors());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 app.use('/usuarios',usersRouter);
 app.use('/recaudadores',recaudadoresRouter);
 app.use('/archivos',archivosRouter);
+app.use('/formatoNombre',formatoNombreArchivosRouter);
 
 //puerto del servidor
 const PORT =  5000 ||  process.env.PORT;

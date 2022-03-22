@@ -29,16 +29,16 @@ formatoNombreArchivos.create = (nuevoFormato,resultado) =>{
 
 formatoNombreArchivos.getAll = (resultado) =>{
 
-    sql.query('SELECT * from formatoNombreArchivo',(err,res)=>{
+    sql.query('SELECT * from formatoNombreArchivos',(err,res)=>{
 
         if(err){
             console.log("error",err);
-            result(null,err);
+            resultado(null,err);
             return;
         }
 
         console.log("Formatos de nombre de archivos encontrados.");
-        result(null,res);
+        resultado(null,res);
 
     })
 
@@ -50,7 +50,7 @@ formatoNombreArchivos.getAll = (resultado) =>{
 formatoNombreArchivos.getFormatoByEntidad = (entidad,resultado) =>{
 
 
-    sql.query(`SELECT * FROM formatoNombreArchivo where entidad = ${entidad}`,(err ,res)=>{
+    sql.query(`SELECT * FROM formatoNombreArchivos where entidad = ${entidad}`,(err ,res)=>{
 
          
         if(err){
@@ -78,7 +78,7 @@ formatoNombreArchivos.updateById = (id,data,resultado) =>{
 
     sql.query(
     
-        `UPDATE formatoNombreArchivo SET nombre = ? , archivo = ? , estado = ?, tipoArchivo = ? , entidad = ? WHERE id = ${id}`,
+        `UPDATE formatoNombreArchivos SET nombre = ? , archivo = ? , estado = ?, tipoArchivo = ? , entidad = ? WHERE id = ${id}`,
         [data.nombre , data.archivo , data.estado , data.tipoArchivo , data.entidad ],
     
     (err , res)=>{
@@ -110,7 +110,7 @@ formatoNombreArchivos.updateById = (id,data,resultado) =>{
 
 formatoNombreArchivos.remove = (id,resultado) =>{
 
-    sql.query(`DELETE FROM formatoNombreArchivo WHERE id= ${id}`,id,(err,res) =>{
+    sql.query(`DELETE FROM formatoNombreArchivos WHERE id= ${id}`,id,(err,res) =>{
 
         if(err){
             console.log("error:",err);

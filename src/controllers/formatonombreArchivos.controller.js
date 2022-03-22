@@ -1,4 +1,4 @@
-import {formatoNombreArchivos as model} from './models/formatoNombreArchivo';
+import {formatoNombreArchivos as model} from './../models/formatoNombreArchivos.model';
 
 //crear un nuevo formato de nombre de archivo.
 
