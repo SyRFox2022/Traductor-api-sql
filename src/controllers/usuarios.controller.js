@@ -15,13 +15,13 @@ export const create = (req,res) =>{
     //creando un objeto para guardar los datos recibidos del front end.
     const usuario ={
 
-        Status: req.body.status,
-        Role: req.body.role,
-        Mail: req.body.mail,
-        FirstName:req.body.firstName,
-        LastName: req.body.lastName,
-        Company: req.body.company,
-        Password: req.body.password,
+        Status: req.body.Status,
+        Role: req.body.Role,
+        Mail: req.body.Mail,
+        FirstName:req.body.FirstName,
+        LastName: req.body.LastName,
+        Company: req.body.Company,
+        Password: req.body.Password,
   
     }
 
@@ -133,7 +133,7 @@ export const updateById = (req,res) =>{
 
     usuarios.updateById(
         req.params.id,
-        new usuarios(req.body),
+        req.body,
         (err,data) =>{
             if(err){
                 if(err.kind === 'No_Encontrado'){

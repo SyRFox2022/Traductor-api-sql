@@ -71,6 +71,7 @@ usersRouter.put('/:id',(req,res,next) =>{
         updateById(req,res);
 
     }else{
+        console.log(validate.error)
         res.status(400).send(validate.error);
     }
 

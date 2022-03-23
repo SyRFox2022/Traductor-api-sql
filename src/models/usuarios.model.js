@@ -83,12 +83,12 @@ usuarios.getAll = (result) =>{
  
 //aptualizar un usuario.
 
-usuarios.updateById = (id,usuario,result) =>  {
+usuarios.updateById = (id,usuarios,result) =>  {
 
     sql.query(
 
-        "UPDATE usuarios SET Status = ?,Role = ?,mail = ?,FirstName = ?, LastName = ?,Company = ?,Password = ? WHERE Id = ?",
-        [usuarios.status,usuarios.role,usuarios.mail,usuarios.firstName,usuarios.lastName,usuarios.company,usuarios.password],
+        `UPDATE usuarios SET Status = ?,Role = ?,mail = ?,FirstName = ?, LastName = ?,Company = ?,Password = ? WHERE Id = ${id}`,
+        [usuarios.Status,usuarios.Role,usuarios.Mail,usuarios.FirstName,usuarios.LastName,usuarios.Company,usuarios.Password],
         (err,res) =>{
             
             if(err){    
@@ -104,7 +104,7 @@ usuarios.updateById = (id,usuario,result) =>  {
             }
 
             console.log("aptualizado usuario con la id",id);
-            result(null,{id:id,...usuario});
+            result(null,{id:id,...usuarios});
         
         }
 
