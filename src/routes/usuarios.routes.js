@@ -44,7 +44,7 @@ usersRouter.post('/',(req,res,next)=>{
         
     }else{
         console.log(validate.error);
-        res.status(400).send(validate.error);
+        res.status(400).send({message:validate.error});
     }
 });
 
