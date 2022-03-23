@@ -10,7 +10,7 @@ recaudadores.create = (nuevoRecaudador,resultado) =>{
             resultado(err,null);
             return;
         }
-        console.log('Recaudador creado con la id:',id);
+        console.log('Recaudador creado');
         resultado(null,{id:res.insertID,...nuevoRecaudador});
     });
 };
