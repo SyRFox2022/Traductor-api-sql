@@ -1,4 +1,4 @@
-import {connection as sql} from './../schemas/db.js';
+import {connection as sql} from './../utilities/db.js';
 import usuarios from './../schemas/usuarios.schemas.js'
 
 

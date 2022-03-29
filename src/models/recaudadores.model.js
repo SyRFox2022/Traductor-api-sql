@@ -1,4 +1,4 @@
-import {connection as sql} from './../schemas/db.js';
+import {connection as sql} from './../utilities/db.js';
 import recaudadores from './../schemas/recaudadores.schema'
 
 recaudadores.create = (nuevoRecaudador,resultado) =>{

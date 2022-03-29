@@ -1,4 +1,4 @@
-import {connection as sql} from './../schemas/db.js';
+import {connection as sql} from './../utilities/db.js';
 import  formatoNombreArchivos from './../schemas/formatoNombreArchivos.schema';
 
 

@@ -3,7 +3,7 @@
  * @param {codRecaudador} codRecaudador Codigo de una entidad recaudadora que se intenta crear.
  * @param {resultado}   resultado  callback para pasar los datos al router.
  */
- import {connection as sql} from './../schemas/db.js';
+ import {connection as sql} from './../utilities/db.js';
 
  const validateExistenceRecaudador = (codRecaudador,resultado) =>{
    

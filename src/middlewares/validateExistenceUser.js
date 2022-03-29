@@ -4,7 +4,7 @@
  * @param {resultado}   resultado  callback para pasar los datos al router.
  */
 
-import {connection as sql} from './../schemas/db.js';
+import {connection as sql} from './../utilities/db.js';
 
 const validateExistenceUser = (userMail,resultado) =>{
   

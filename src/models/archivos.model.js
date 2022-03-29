@@ -1,4 +1,4 @@
-import {connection as sql} from './../schemas/db.js';
+import {connection as sql} from './../utilities/db.js';
 import archivos from './../schemas/archivos.schema'
 
 //ingresar un nuevo archivo a la base.
