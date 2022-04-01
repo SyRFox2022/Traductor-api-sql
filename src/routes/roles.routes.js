@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { create , findById , updateById , remove } from './../controllers/roles.controller.js';
+import { create , findById , updateById , remove , getAll } from './../controllers/roles.controller.js';
 
 import {validateResourceNW} from '../middlewares/validateResources';
 
@@ -29,7 +29,10 @@ rolesRouter.post('/',(req,res,next)=>{
 
 //obtener un rol por id.
 
-rolesRouter.get('/:Id',findById);
+rolesRouter.get('/:id',findById);
+
+//obtener todos los roles.
+rolesRouter.get('/',getAll);
 
 //Aptualizar un rol por id.
 

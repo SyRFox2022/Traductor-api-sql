@@ -8,6 +8,8 @@ import recaudadoresSchema from '../validators/recaudadores.validation.js';
 
 import { validateExistenceRecaudador } from '../middlewares/validateExistenceRecaudador';
 
+import { validateRole } from "./../middlewares/validateRole.js";
+
 const recaudadoresRouter = express.Router();
 
 //Crear nuevo usuario.
@@ -75,6 +77,30 @@ recaudadoresRouter.put('/:codRecaudador',(req,res,next)=>{
 
 //Borrar un recaudador por cod.
 
-recaudadoresRouter.delete('/:codRecaudador',remove);
+recaudadoresRouter.delete('/:codRecaudador', (req,res,next) =>{
+
+    validateRole(req.headers.permiso,req.headers.usuariorolid,(err,validacion)=>{
+        
+        if(err){
+            console.log(err,'error');
+            res.status(500).send({
+                message: err.sqlMessage
+            })
+        }
+
+        //verificar que tenga el rol.
+        if(validacion == true){
+
+            remove(req,res);
+        }
+        else{
+            console.log("No tiene permisos para realizar es accion.");
+            res.status(401).send({message:"No tienes permisos necesarios."});
+        }
+
+    });
+
+});
+
 
 export {recaudadoresRouter};

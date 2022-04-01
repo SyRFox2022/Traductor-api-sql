@@ -10,7 +10,7 @@ import {connection as sql} from './../utilities/db.js';
 const validateRole = (permiso,usuarioIdRol,resultado) =>{
     
     //consulta para obtener los roles del usuario.
-    sql.query((`SELECT * FROM roles WHERE id = ${usuarioIdRol}`),async (err,res)=>{
+    sql.query((`SELECT ${permiso} FROM roles WHERE id = ${usuarioIdRol}`),async (err,res)=>{
 
         //Error
         if(err){
@@ -20,8 +20,9 @@ const validateRole = (permiso,usuarioIdRol,resultado) =>{
         
         //si el usuario tiene roles.
         if(res.length){
-
-            if((res.permiso) == 1){
+            
+            //si tiene el rol en 1 , devuelve true , si no false.
+            if(Object.values(res[0]) == 1){
                 
                 resultado(null,true);
                 return;

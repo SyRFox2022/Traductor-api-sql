@@ -11,21 +11,21 @@ export const create = (req,res)=>{
     }
 
     const newRol = {
-        nombre: req.body.nombre,
-        editEntidades: req.body.editEntidades,
-        editArchivos: req.body.editArchivos,
-        deleteEntidades: req.body.deleteEntidades,
-        deleteArchivos: req.body.deleteArchivos,
-        createEntidades: req.body.createEntidades,
-        crateArchivos: req.body.crateArchivos,
-        A_createUsuarios: req.body.A_createUsuarios,
-        A_editUsuarios: req.body.A_editUsuarios,
-        A_deleteUsuarios: req.body.A_deleteUsuarios,
-        A_createRoles: req.body.A_createRoles,
-        A_editRoles: req.body.A_editRoles,
-        A_deleteRoles: req.body.A_deleteRoles,
-        A_makeAdmin: req.body.A_makeAdmin,
-        A_doubleV: req.body.A_doubleV
+        Nombre: req.body.nombre,
+        EDitEntidades: req.body.editEntidades,
+        EditArchivos: req.body.editArchivos,
+        DeleteEntidades: req.body.deleteEntidades,
+        DeleteArchivos: req.body.deleteArchivos,
+        CreateEntidades: req.body.createEntidades,
+        CreateArchivos: req.body.createArchivos,
+        A_CreateUsuarios: req.body.A_createUsuarios,// puede pasar porque son como 300 campos
+        A_EditUsuarios: req.body.A_editUsuarios,
+        A_DeleteUsuarios: req.body.A_deleteUsuarios,
+        A_CreateRoles: req.body.A_createRoles,
+        A_EditRoles: req.body.A_editRoles,
+        A_DeleteRoles: req.body.A_deleteRoles,
+        A_MakeAdmin: req.body.A_makeAdmin,
+        A_DoubleVer: req.body.A_doubleV
     }
 
     console.log(newRol);
@@ -43,30 +43,48 @@ export const create = (req,res)=>{
         }
     })
 }
+//obtener todos los roles.
+
+export  const getAll = (req,res) =>{
+    
+    roles.getAll((err,data)=>{
+
+        if(err){
+            res.status(500).send({
+                message:
+                    err.message || "Error al intentar obtener todo los roles."
+            })
+        }
+        else{
+            console.log('obtenidos todos los roles.');
+            res.json(data);
+        }
+    })
+}
 
 //buscar un rol por id.
 
 export const findById = (req, res) =>{
 
-    roles.findById(req.params.Id,(err,data)=>{
+    roles.findById(req.params.id,(err,data)=>{
     
     //verificar si ocurrio algun error.
     if(err){
 
         if(err.kind === "No_Encontrado"){
             res.status(404).send({
-                message:`No podimos el rol con la id: ${req.params.Id} `
+                message:`No podimos el rol con la id: ${req.params.id} `
             }) 
         }
         else{
             res.status(500).send({
-                message: `Error al intentar buscar el rol con la id: ${req.param.Id}`
+                message: `Error al intentar buscar el rol con la id: ${req.params.id}`
             })
 
         }
     }
     else{
-        console.log("rol encontrado con la id:",req.params.Id);
+        console.log("rol encontrado con la id:",req.params.id);
         res.send(data);
     }
 
@@ -116,18 +134,20 @@ export const updateById = (req,res)=>{
 //borrar un rol.
 
 export const remove = (req, res) => {
-    roles.remove(req.params.id, (err, data) => {
+    roles.remove(req.params.id, (err, data) =>{
       if (err) {
-        if (err.kind === "No_encontrado") {
+        if (err.kind === "No_Encontrado") {
           res.status(404).send({
             message: `No encontarmos el rol con el id ${req.params.id}.`
           });
-        } else {
+        } 
+        else {
           res.status(500).send({
             message: "No pudimos eliminar el rol con id " + req.params.id
           });
         }
-      } else res.send({ message: `rol eliminado con exito.` });
+      } 
+      else res.send({ message: `rol eliminado con exito.` });
     });
   };
 

@@ -17,16 +17,14 @@ usersRouter.post('/',(req,res,next)=>{
     // ya existe
     if(validate.error == null){
 
-        validateExistenceUser(req.body.mail,(err,data)=>{
-
-
+        validateExistenceUser(req.body.Mail,(err,data)=>{
+    
             if(err){
                 console.log(err,'error');
                 res.status(500).send({
                     message: "Error al intentar crear un usuario."
                 })
             }
-            
             else{
                 
                 //si el usuario no existe, crearlo.
@@ -35,8 +33,10 @@ usersRouter.post('/',(req,res,next)=>{
                     create(req,res);
 
                 }
+
                 else{
-                    res.status(400).send({message:"Ya existe un usuario con esa Email"});
+                    console.log("error al intentar crear un usuario: ya existe el usuario con ese mail.");
+                    res.status(400).send({message:"Ya existe un usuario con ese Email, por favor utilice otro mail."});
                 }
             }
 

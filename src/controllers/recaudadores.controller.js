@@ -65,7 +65,7 @@ export const findByCodRecaudador = (req,res) => {
         }
       }  
       else{
-        console.log("recaudadores obtenido");
+        console.log("recaudador obtenido");
         res.send(data);
       }
 

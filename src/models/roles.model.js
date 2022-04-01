@@ -14,10 +14,30 @@ roles.create = (nuevoRol,resultado) =>{
             resultado(err,null);
             return;
         }
-        
+        console.log("Rol creado");
+        resultado(null,{id:res.insertID,...nuevoRol});
     })
 }
 
+//buscar todo los roles.
+
+roles.getAll = (result) =>{
+
+    let query = 'SELECT * FROM roles';
+
+    sql.query(query,(err,res)=>{
+        if(err){
+            console.log("error",err);
+            result(null,err);
+            return;
+        }
+
+        console.log("roles encontrados.");
+        result(null,res);
+
+    })
+}
+ 
 //buscar un rol por id.
 
 roles.findById = (id,resultado) =>{
@@ -33,14 +53,14 @@ roles.findById = (id,resultado) =>{
         }
 
         //si se encuentra algo con la id.
-        if(res.legth){
-            console.log("roles encontrados con la id",id);
+        if(res.length){
             resultado(null,res);
             return;
         }
         
         //si no se encuentra nada con esa id.
         resultado({kind:"not_found"},null);
+
     })
 }
 
