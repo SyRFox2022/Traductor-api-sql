@@ -1,16 +1,23 @@
 import {usuarios} from "./../models/usuarios.model";
+import { v4 as uuidv4 } from 'uuid';
+import { getToken , getTokenData } from './../utilities/jwt.js'
+import { getTemplate , sendEmail } from './../utilities/sendMails';
+import {connection as sql} from './../utilities/db.js';
+
+ 
 //Crear un nuevo usuario.
-
-
 export const create = (req,res) =>{
 
+    //verificar que el usuario no venga vacio.
     if(!req.body){
         res.status(400).send(
         {
             message:'El contenido no puede estar vacio,por favor rellene los campos.',
-        }
-        )
-    }
+        })
+    }   
+
+    //obtener codigo.
+    const codev4 = uuidv4();
 
     //creando un objeto para guardar los datos recibidos del front end.
     const usuario ={
@@ -22,10 +29,14 @@ export const create = (req,res) =>{
         LastName: req.body.LastName,
         Company: req.body.Company,
         Password: req.body.Password,
+        IdRol:req.body.IdRol,
+        code: codev4,
+        validate:0,
   
     }
-
-    console.log(usuario);
+    const email = usuario.Mail;
+    //obtener el token
+    const token = getToken({ email , codev4 })
 
     //Guardar el usuario en la base de datos.
 
@@ -37,6 +48,13 @@ export const create = (req,res) =>{
         })
         }
         else{
+
+            //enviar mail de confirmacion.
+            const templete = getTemplate(usuario.FirstName , token);
+
+            sendEmail(usuario.Mail,"Traductor:Mail de confirmacion",templete);
+
+            //enviar data al frontend.
             res.send(data);
         }
     })
@@ -175,3 +193,75 @@ export const remove = (req, res) => {
     });
   };
 
+
+//confirmar cuenta de un usuario.
+
+export const validateUser = async (req,res,resultado) =>{
+
+    //obtener el token
+
+    const { token } = req.params;
+
+    //verificar la data
+
+    const data = await getTokenData(token);
+
+    if(data === null){
+
+        return resultado(0);
+    }
+
+    //verificar existencia del usuario.
+
+    const { email , codev4  } = data.data;
+
+    const user = await sql.query(`SELECT * FROM usuarios WHERE mail = "${ email }"`,async (err,res)=>{
+
+        //Error
+
+        if(err){
+            return resultado(0);
+        }
+    
+        //si el usuario no existe , enviar un message.
+         
+        if(res.length == 0){
+
+            return resultado(2);
+            
+        }
+
+        //si existe el usuario.
+        
+        if(res.length){
+                
+            //verificar codigo.
+            if(codev4 != res[0].code){
+
+                return resultado(0);
+            
+            }
+
+            //aptualizar usuario.
+            
+            sql.query(`UPDATE usuarios set validate = 1 WHERE mail = "${ res[0].Mail }"`,async (err,res)=>{
+
+                //Error
+                if(err){
+                    resultado(err,null);
+                    return resultado(1);
+                }
+        
+            })
+
+            //redirrecionar a la confirmacion.
+
+            return resultado(1);
+
+        }
+
+       
+    }
+    )
+
+}

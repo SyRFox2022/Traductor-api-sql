@@ -64,14 +64,14 @@ roles.findById = (id,resultado) =>{
     })
 }
 
-//aptualizar un rol por id.
+//actualizar un rol por id.
 
 roles.updateById = (id,datos,resultado) =>{
     
     //realizar la consulta.
     sql.query(
-        `UPDATE roles SET nombre = ?,EditEntidades = ? ,EditArchivos = ? ,DeleteEntidades = ? ,DeleteEntidades = ?,CreateEntidades = ?,CreateArchivos = ?,A_CreateUsuarios = ?,A_EditUsuarios = ?,A_DeleteUsuarios = ?,A_CreateRoles = ?,A_EditRoles = ?,A_DeleteRoles = ?,A_MakeAdmin = ?,A_DoubleVar = ? where id = ${id}`,
-        [datos.Nombre,datos.EditEntidades,datos.EditArchivos,datos.DeleteEntidades,datos.DeleteArchivos,datos.CreateEntidades,datos.CreateARchivos,datos.A_CreateUsuarios,datos.A_EditUsuarios,datos.A_DeleteUsuarios,datos.CreateRoles,datos.A_EditRoles,datos.A_DeleteRoles,datos.A_MakeAdmin ,datos.A_DoubleVar],
+        `UPDATE roles SET nombre = ?,EDitEntidades = ? ,EditArchivos = ? ,DeleteEntidades = ? ,DeleteEntidades = ?,CreateEntidades = ?,CreateArchivos = ?,A_CreateUsuarios = ?,A_EditUsuarios = ?,A_DeleteUsuarios = ?,A_CreateRoles = ?,A_EditRoles = ?,A_DeleteRoles = ?,A_MakeAdmin = ?,A_DoubleVer = ?, SoloVisualizar = ? where id = ${id}`,
+        [datos.Nombre,datos.EDitEntidades,datos.EditArchivos,datos.DeleteEntidades,datos.DeleteArchivos,datos.CreateEntidades,datos.CreateArchivos,datos.A_CreateUsuarios,datos.A_EditUsuarios,datos.A_DeleteUsuarios,datos.A_CreateRoles,datos.A_EditRoles,datos.A_DeleteRoles,datos.A_MakeAdmin ,datos.A_DoubleVer, datos.SoloVisualizar],
         (err,res) =>{
 
             if(err){
@@ -86,7 +86,7 @@ roles.updateById = (id,datos,resultado) =>{
         }
 
 
-        console.log("aptualizado el rol con la id:",id);
+        console.log("actualizado el rol con la id:",id);
         resultado(null,{id:id,...datos})
 
         }
@@ -98,7 +98,7 @@ roles.updateById = (id,datos,resultado) =>{
 roles.remove  = (id,resultado) =>{
 
     //realizar la consulta.
-    sql.query (`DELETE FROM roles where id = ${id}`,(err,res)=>{
+    sql.query (`DELETE FROM roles WHERE id = ${id}`,(err,res)=>{
 
         if(err){
             console.log("error:",err);
@@ -112,7 +112,7 @@ roles.remove  = (id,resultado) =>{
         }
 
         console.log("rol eliminado con id:" ,id);
-        result(null,res);
+        resultado(null,res);
     })
 }
 

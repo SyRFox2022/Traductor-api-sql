@@ -34,11 +34,11 @@ rolesRouter.get('/:id',findById);
 //obtener todos los roles.
 rolesRouter.get('/',getAll);
 
-//Aptualizar un rol por id.
+//Actualizar un rol por id.
 
 rolesRouter.put('/:Id',(req,res,next)=>{
 
-    const validate = validateResourceNW(rolesSchema,req.body);
+    const validate = validateResourceNW(rolesSchemas,req.body);
     
     if(validate.error == null){
         

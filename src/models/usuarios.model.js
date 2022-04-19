@@ -86,9 +86,9 @@ usuarios.getAll = (result) =>{
 usuarios.updateById = (id,usuarios,result) =>  {
 
     sql.query(
-
-        `UPDATE usuarios SET Status = ?,Role = ?,mail = ?,FirstName = ?, LastName = ?,Company = ?,Password = ? WHERE Id = ${id}`,
-        [usuarios.Status,usuarios.Role,usuarios.Mail,usuarios.FirstName,usuarios.LastName,usuarios.Company,usuarios.Password],
+ 
+        `UPDATE usuarios SET Status = ?,Role = ?,IdRol = ?,mail = ?,FirstName = ?, LastName = ?,Company = ?,Password = ? WHERE Id = ${id}`,
+        [usuarios.Status,usuarios.Role,usuarios.IdRol,usuarios.Mail,usuarios.FirstName,usuarios.LastName,usuarios.Company,usuarios.Password],
         (err,res) =>{
             
             if(err){    

@@ -9,7 +9,8 @@ const usuariosSchema  = joi.object({
     LastName: joi.string().required().max(80).min(1),
     Company: joi.string().required().max(50).min(1),
     Password: joi.string().required().max(50).min(1),
-    
+    IdRol: joi.number().required().min(1)
+
 })
 
 

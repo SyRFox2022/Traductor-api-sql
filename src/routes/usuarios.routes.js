@@ -1,7 +1,7 @@
 import express from 'express';
 import {validateResourceNW} from '../middlewares/validateResources.js';
 import usuariosSchema from '../validators/usuario.validation.js';
-import { create , findByMail , getAll , updateById , remove , findById } from  './../controllers/usuarios.controller';
+import { create , findByMail , getAll , updateById , remove , findById , validateUser } from  './../controllers/usuarios.controller';
 import {validateExistenceUser} from "../middlewares/validateExistenceUser.js";
 
 const usersRouter = express.Router();
@@ -81,5 +81,26 @@ usersRouter.put('/:id',(req,res,next) =>{
 //Borrar un usuario por id.
 
 usersRouter.delete('/:id',remove);
+
+//confirmar mail
+
+usersRouter.get("/confirmacion/:token" , (req,res,next)=>{
+
+
+    validateUser(req,res,(resultado)=>{
+
+        if(resultado == 0){
+
+            res.redirect("/error.html");            
+        }
+        else{
+
+            res.redirect("/confirmacion.html");
+        }
+    })
+
+
+} );
+
 
 export { usersRouter };

@@ -17,6 +17,7 @@ const rolesSchema = joi.object({
     A_DeleteRoles: joi.number().required().max(1).min(1),
     A_MakeAdmin: joi.number().required().max(1).min(1),
     A_DoubleVer: joi.number().required().max(1).min(1),
+    SoloVisualizar: joi.number().required().max(1).min(1)
 
 
 })

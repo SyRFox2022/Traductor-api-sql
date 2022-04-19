@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from 'path';
 
 const app = express();
 
@@ -18,6 +19,8 @@ import { rolesRouter } from "./routes/roles.routes";
 app.use(cors());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('/public'));
+
 
 app.get("/", (req, res) => {
   res.json({ message: "Traductor API SQL" });

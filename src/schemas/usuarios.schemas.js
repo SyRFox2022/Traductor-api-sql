@@ -7,7 +7,8 @@ const usuarios = function(usuario){
     this.firstName = usuario.firstName,
     this.lastName = usuario.lastName,
     this.company = usuario.company,
-    this.password = usuario.password
+    this.password = usuario.password,
+    this.idRole = usuario.idRole
 
 };
 

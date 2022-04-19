@@ -1,5 +1,6 @@
 const roles = function(rol){
 
+
     this.nombre = rol.nombre,
     this.editEntidades = rol.editEntidades,
     this.editArchivos = rol.editArchivos,
@@ -15,6 +16,7 @@ const roles = function(rol){
     this.A_deleteRoles = rol.A_deleteRoles,
     this.A_makeAdmin = rol.A_makeAdmin,
     this.A_doubleV = rol.A_doubleV
+    this.SoloVisualizar = rol.SoloVisualizar
 
 }
 

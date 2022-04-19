@@ -2,7 +2,7 @@ import {roles} from "./../models/roles.model";
 
 //crear un nuevo rol.
 export const create = (req,res)=>{
-
+    console.log(req.body)
     //si el contenido llega vacio.
     if(!req.body){
         res.status(400).send({
@@ -11,21 +11,22 @@ export const create = (req,res)=>{
     }
 
     const newRol = {
-        Nombre: req.body.nombre,
-        EDitEntidades: req.body.editEntidades,
-        EditArchivos: req.body.editArchivos,
-        DeleteEntidades: req.body.deleteEntidades,
-        DeleteArchivos: req.body.deleteArchivos,
-        CreateEntidades: req.body.createEntidades,
-        CreateArchivos: req.body.createArchivos,
-        A_CreateUsuarios: req.body.A_createUsuarios,// puede pasar porque son como 300 campos
-        A_EditUsuarios: req.body.A_editUsuarios,
-        A_DeleteUsuarios: req.body.A_deleteUsuarios,
-        A_CreateRoles: req.body.A_createRoles,
-        A_EditRoles: req.body.A_editRoles,
-        A_DeleteRoles: req.body.A_deleteRoles,
-        A_MakeAdmin: req.body.A_makeAdmin,
-        A_DoubleVer: req.body.A_doubleV
+        Nombre: req.body.Nombre,
+        EDitEntidades: req.body.EDitEntidades,
+        EditArchivos: req.body.EditArchivos,
+        DeleteEntidades: req.body.DeleteEntidades,
+        DeleteArchivos: req.body.DeleteArchivos,
+        CreateEntidades: req.body.CreateEntidades,
+        CreateArchivos: req.body.CreateArchivos,
+        A_CreateUsuarios: req.body.A_CreateUsuarios,// puede pasar porque son como 300 campos
+        A_EditUsuarios: req.body.A_EditUsuarios,
+        A_DeleteUsuarios: req.body.A_DeleteUsuarios,
+        A_CreateRoles: req.body.A_CreateRoles,
+        A_EditRoles: req.body.A_EditRoles,
+        A_DeleteRoles: req.body.A_DeleteRoles,
+        A_MakeAdmin: req.body.A_MakeAdmin,
+        A_DoubleVer: req.body.A_DoubleVer,
+        SoloVisualizar: req.body.SoloVisualizar
     }
 
     console.log(newRol);
@@ -92,7 +93,7 @@ export const findById = (req, res) =>{
 
 }
 
-//aptualizar un rol.
+//actualizar un rol.
 
 export const updateById = (req,res)=>{
     
@@ -103,10 +104,12 @@ export const updateById = (req,res)=>{
         })
     }
 
-    console.log(req.body);
+    console.log("soy el body",req.body);
+    console.log("req.params.id",req.params);
+    console.log(req.params.id);
 
     roles.updateById(
-        req.params.id,
+        req.params.Id,
         req.body,
         (err,data) =>{
             if(err){
@@ -117,7 +120,7 @@ export const updateById = (req,res)=>{
                 }
                 else{
                     res.status(500).send({
-                        message: "Error al aptualizar"
+                        message: "Error al actualizar"
                     })
                 }
 
@@ -134,16 +137,16 @@ export const updateById = (req,res)=>{
 //borrar un rol.
 
 export const remove = (req, res) => {
-    roles.remove(req.params.id, (err, data) =>{
+    roles.remove(req.params.Id, (err, data) =>{
       if (err) {
         if (err.kind === "No_Encontrado") {
           res.status(404).send({
-            message: `No encontarmos el rol con el id ${req.params.id}.`
+            message: `No encontarmos el rol con el id ${req.params.Id}.`
           });
         } 
         else {
           res.status(500).send({
-            message: "No pudimos eliminar el rol con id " + req.params.id
+            message: "No pudimos eliminar el rol con id " + req.params.Id
           });
         }
       } 
